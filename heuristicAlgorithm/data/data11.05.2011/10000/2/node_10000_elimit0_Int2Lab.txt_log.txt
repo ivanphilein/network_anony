@@ -1,0 +1,15 @@
+loop:0	num:0	k:2	while:5000	method:2
+#Node_Number	Original_Edge_Number	New_Edge_Number	EdgeAdded	Time
+10000	12477	12890	413	17069.568
+loop:0	num:0	k:4	while:2500	method:2
+#Node_Number	Original_Edge_Number	New_Edge_Number	EdgeAdded	Time
+10000	12477	13618	1141	16957.504
+loop:0	num:0	k:8	while:1250	method:2
+#Node_Number	Original_Edge_Number	New_Edge_Number	EdgeAdded	Time
+10000	12477	15156	2679	17390.996
+loop:0	num:0	k:16	while:625	method:2
+#Node_Number	Original_Edge_Number	New_Edge_Number	EdgeAdded	Time
+10000	12477	19064	6587	18147.927
+loop:0	num:0	k:32	while:313	method:2
+#Node_Number	Original_Edge_Number	New_Edge_Number	EdgeAdded	Time
+10000	12477	27896	15419	18858.128

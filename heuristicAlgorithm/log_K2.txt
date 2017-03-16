@@ -1,0 +1,3 @@
+Read graph file: data/DBLP/DBLPNoLabel2Lab.txt
+start
+Total time taken by degree anonymous : 2775976 ms 640 us

@@ -1,0 +1,39 @@
+start
+stop and size 15 146
+stop and size 15 130
+stop and size 15 114
+stop and size 15 98
+stop and size 15 82
+stop and size 15 66
+stop and size 15 50
+stop and size 15 34
+stop and size 18 18
+add edge 116 3
+ go back to AnonymityList: 7 and 9 is re-insert to un-anonymityList
+stop and size 15 34
+stop and size 18 18
+add edge 127 80
+ go back to AnonymityList: 9 and 10 is re-insert to un-anonymityList
+stop and size 15 34
+stop and size 18 18
+add edge 122 80
+ go back to AnonymityList: 10 and 11 is re-insert to un-anonymityList
+stop and size 15 34
+stop and size 18 18
+add edge 122 80
+ go back to AnonymityList: 11 and 12 is re-insert to un-anonymityList
+stop and size 15 34
+stop and size 18 18
+add edge 65 80
+ go back to AnonymityList: 12 and 13 is re-insert to un-anonymityList
+stop and size 15 34
+stop and size 18 18
+add edge 24 80
+ go back to AnonymityList: 13 and 14 is re-insert to un-anonymityList
+stop and size 15 34
+stop and size 18 18
+add edge 132 80
+ go back to AnonymityList: 14 and 15 is re-insert to un-anonymityList
+stop and size 15 34
+stop and size 18 18
+Total time taken by degree anonymous : 11 ms 149 us

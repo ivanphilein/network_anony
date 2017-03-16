@@ -1,0 +1,348 @@
+<html>
+<body>
+
+<body link="#0000ff" vlink="#0000ff" alink="#0000ff">
+<h1>Network anonymization README</h1>
+
+<h2>Index</h2>
+<ul>
+  <li><a href="#folder structure">Folder structure</a></li>
+  <li><a href="#result data">Result data</a></li>
+  <li><a href="#run step">Running Steps</a></li>
+  <li><a href="#file format">File format</a></li>
+  <li><a href="#problems">Problems During Implement</a></li>
+  <li><a href="#problems to fix">Problems still need to fix</a></li>
+  <li><a href="#future work">Future work</a></li>
+</ul>
+
+<hr>
+
+<h2><a name="folder structure"></a>Folder structure:</h2> 
+<ul>
+  <li><font color="blue">preprocess</font></li>
+	<ul>
+		<li>FakeLabel.java,which can generate fake labels for an unlabeled graph.<br>
+	Input: 1. graph 2. # of labels in the each edge 3. # of leaf number(leaf number can not be smaller than label number)<br>
+	Output: a graph with labels file name is like: s2_dpinputFile_o_XLab.txt as this file will be used for input of DP and other degree anonymization.</li>
+		<li>HTree.java	whcih is used to build Hierarchy Tree</li>
+		<li>LiveJournalData.java which is used to get the live journal data</li>
+		<li>Running steps: 
+		<pre>ant</pre> (to generate the livk.data)
+		<pre>./run.sh</pre> (can do the get the live journal data and also add the fake labels)
+		<pre>./runDBLP.sh</pre> (can only add the fake labels for DBLP data as DBLP graph</li>	
+	</ul>
+  <li><font color="blue">heuristicAlgorithm</font></li>
+This folder is the main folder of Group-heuristic method
+	<ul>
+		<li>include folder: 
+			<ul>
+			<li>heuristic.h</li>
+			<li>mapping.h</li>
+			<li>sortMap.h: special head file has the information of element used to sort based on node degree(node id, node degree, checked), used to find the larger degree nodes.</li>
+			</ul>		
+		</li>
+
+		<li>
+			<ul>
+			<li>heuristic.cpp: k_anonymity function, based on the graph and get new graph with node degree anonomitied.</li>
+			<li>mapping.cpp: Read graph information and store the node and edge map, like node to edge, edgeid to edge, etc.</li>
+			</ul>
+		</li>
+		<li>Running steps:
+			<pre>./make.sh</pre>
+			<pre>./heu2 graph_file K Method</pre>
+	Here, the new code just have one method working now, need to change later.
+			<br>
+	May check more examples from .sh files		
+		</li>
+	</ul>
+  <li><font color="red">arxiv</font></li>
+This folder has the data files of arxiv dataset.<font color="red">TODO: more details need to be added later.</font>
+  <li><font color="blue">DBLP</font></li>
+This folder has the data files of DBLP dataset, the files under DBLP are DBLP input for edge anonymization, output folder is the output of edge anonymization.
+  <li><font color="red">debug</font></li>
+This folder is the debug result of DP function.<font color="red">TODO: more details need to be added later.</font>
+  <li><font color="red">enron</font></li>
+This folder has the data files of enron dataset.<font color="red">TODO: more details need to be added later.</font>
+  <li><font color="blue">figure</font></li>
+This folder has all the figures(PDF file) and R code to generate the figures. See more details at <a href="#result data">Result data</a>.
+  <li><font color="red">livj</font></li>
+This folder has the data files of livj dataset.<font color="red">TODO: more details need to be added later.</font>
+  <li><font color="red">logresult</font></li>
+This folder has the log files during running program.<font color="red">TODO: more details need to be added later.</font>
+  <li><font color="red">paper</font></li>
+This folder has the draft of paper.<font color="red">TODO: more details need to be added later.</font>
+  <li><font color="red">rcoderef</font></li>
+This folder is used to learn how to draw figures with R, can be delete now.<font color="red">TODO: more details need to be added later.</font>
+  <li><font color="red">result</font></li>
+The result files(Excel), used to draw figures in the EDBT paper.<font color="red">TODO: more details need to be added later.</font>
+  <li><font color="red">syndata</font></li>
+This folder has the data files of syndata dataset.<font color="red">TODO: more details need to be added later.</font>
+  <li>For other folders and edge anonymization, <font
+			color="red">TODO: merge the readme.txt file. I
+			will merge that later.</font></li>
+  <li>Complete folder list: put all the foders there, if you did not
+			check it this time, just put a TODO note</li>
+</ul>
+<hr>
+<h2><a name="result data"></a>Result data</h2>
+<style type="text/css">
+td{
+	width:20px;
+}
+tr{
+	height: 40px;
+}
+
+tr.datacellone {
+	background-color: #CC9999; color: black;
+}
+tr.datacelltwo {
+	background-color: #9999CC; color: black;
+	height: 40px;
+}
+</style>
+<table border="1">
+<tr color="green">
+<th>Figure in the final paper</th>
+<th>File name of data</th>
+<th>Row numbers of data</th>
+<th>Column numbers of data</th>
+<th>R file</th>
+<th>Corresponding PDF file</th>
+</tr>
+<tr class="datacelltwo">
+  <td>Figure 7 Degree anonymization: Enron dataset (a)</td>
+  <td>result/degreeanony_noZero_2011_1212_figure.xlsx</td>
+  <td>4-9</td>
+  <td>AB,AC,AD,AE</td>
+  <td>enron_degreeanony_edge_log.r</td>
+  <td>enron_degreeanony_edge_log.pdf</td>
+</tr>
+<tr>
+  <td>Figure 7 Degree anonymization: Enron dataset (b)</td>
+  <td>result/degreeanony_noZero_2011_1212_figure.xlsx</td>
+  <td>4-9</td>
+  <td>AF,AG,AH</td>
+  <td>enron_degreeanony_time_log.r</td>
+  <td>enron_degreeanony_time_log.pdf</td>
+</tr>
+<tr class="datacelltwo">
+  <td>Figure 8 Degree anonymization: arXiv dataset (a)</td>
+  <td>result/degreeanony_noZero_2011_1212_figure.xlsx</td>
+  <td>116-122</td>
+  <td>AB,AC,AD,AE</td>
+  <td>arxiv_degreeanony_edge.r</td>
+  <td>arxiv_degreeanony_edge.pdf</td>
+</tr>
+<tr>
+  <td>Figure 8 Degree anonymization: arXiv dataset (b)</td>
+  <td>result/degreeanony_noZero_2011_1212_figure.xlsx</td>
+  <td>116-122</td>
+  <td>AF,AG,AH</td>
+  <td>arxiv_degreeanony_time.r</td>
+  <td>arxiv_degreeanony_time.pdf</td>
+</tr>
+<tr class="datacelltwo">
+  <td>Figure 9 Degree anonymization: DBLP dataset (a)</td>
+  <td>result/DBLP_ALL_RESULTS.xlsx</td>
+  <td>1-16</td>
+  <td>A,B,C</td>
+  <td>DBLP_degreeanony_edge.r</td>
+  <td>DBLP_degreeanony_edge.pdf</td>
+</tr>
+<tr>
+  <td>Figure 9 Degree anonymization: DBLP dataset (b)</td>
+  <td>result/DBLP_ALL_RESULTS.xlsx</td>
+  <td>1-16</td>
+  <td>A,B,C</td>
+  <td>DBLP_degreeanony_time.r</td>
+  <td>DBLP_degreeanony_time.pdf</td>
+</tr>
+<tr class="datacelltwo">
+  <td>Figure 10 Degree anonymization: Synthetic dataset (a)</td>
+  <td>result/degreeanony_noZero_2011_1212_figure.xlsx</td>
+  <td>11-18</td>
+  <td>AB-AE(we do not show the DP here)</td>
+  <td>syn_degreeanony_edge.r</td>
+  <td>syn_degreeanony_edge.pdf</td>
+</tr>
+<tr>
+  <td>Figure 10 Degree anonymization: Synthetic dataset (b)</td>
+  <td>result/degreeanony_noZero_2011_1212_figure.xlsx</td>
+  <td>11-18</td>
+  <td>AG-AH(we do not show the DP here)</td>
+  <td>syn_degreeanony_time.r</td>
+  <td>syn_degreeanony_time.pdf</td>
+</tr>
+<tr class="datacelltwo">
+  <td>Figure 11 Degree anonymization: Group-heuristic,Synthetic dataset, fix n = 5K (a)</td>
+  <td>result/degreeanony_noZero_2011_1212_figure.xlsx</td>
+  <td>49-70</td>
+  <td>AB,AD</td>
+  <td>syn_degreeanony_varyd_edge.r</td>
+  <td>syn_degreeanony_varyd_edge.pdf</td>
+</tr>
+<tr>
+  <td>Figure 11 Degree anonymization: Group-heuristic,Synthetic dataset, fix n = 5K (b)</td>
+  <td>result/degreeanony_noZero_2011_1212_figure.xlsx</td>
+  <td>49-70</td>
+  <td>AB,AG</td>
+  <td>syn_degreeanony_varyd_time.r</td>
+  <td>syn_degreeanony_varyd_time.pdf</td>
+</tr>
+<tr class="datacelltwo">
+  <td>Figure 12 Edge label anonymization:
+Enron dataset, compare different pruning strategies: EL denotes the number of edge labels on each edge, fix n = 5K (a)</td>
+  <td>result/new_heuristic_2011_1107_figure.xlsx</td>
+  <td>19-22</td>
+  <td>V,W,X,Y,Z,AA</td>
+  <td>prune_enron_tnode.r</td>
+  <td>prune_enron_tnode.pdf</td>
+</tr>
+<tr>
+  <td>Figure 12 Edge label anonymization:
+Enron dataset, compare different pruning strategies: EL denotes the number of edge labels on each edge, fix n = 5K (b)</td>
+  <td>result/new_heuristic_2011_1107_figure.xlsx</td>
+  <td>13-16</td>
+  <td>V,W,X,Y,Z,AA</td>
+  <td>prune_enron_time.r</td>
+  <td>prune_enron_time.pdf</td>
+</tr>
+<tr class="datacelltwo">
+  <td>Figure 12 Edge label anonymization:
+Enron dataset, compare different pruning strategies: EL denotes the number of edge labels on each edge, fix n = 5K (c)</td>
+  <td>result/new_heuristic_2011_1107_figure.xlsx</td>
+  <td>4-16</td>
+  <td>AA,AB,AC</td>
+  <td>prune_enron_tnode_vs_time.r</td>
+  <td>prune_enron_tnode_vs_time.pdf</td>
+</tr>
+<tr>
+  <td>Figure 13 Edge label anonymization: Synthetic dataset (EL2)</td>
+  <td>result/new_heuristic_2011_1107_figure.xlsx</td>
+  <td>76-82</td>
+  <td>L,M,N,O</td>
+  <td>syn_edgetime_varyn_log.r</td>
+  <td>syn_edgetime_varyn_log.pdf</td>
+</tr>
+<tr class="datacelltwo">
+  <td>Figure 14 Edge label anonymization: DBLP dataset (EL2)</td>
+  <td>result/DBLP_ALL_RESULTS.xlsx</td>
+  <td>18-24</td>
+  <td>A,B</td>
+  <td>DBLP_edgetime_varyK.r</td>
+  <td>DBLP_edgetime_varyK.pdf</td>
+</tr>
+<tr>
+  <td>Figure 15 Edge label anonymization: arXiv dataset</td>
+  <td>result/new_heuristic_2011_1107_figure.xlsx</td>
+  <td>159-164</td>
+  <td>M,N,O</td>
+  <td>arxiv_edgetime.r</td>
+  <td>arxiv_edgetime.pdf</td>
+</tr>
+<tr class="datacelltwo">
+  <td>Figure 16 EInformation loss: Enron dataset</td>
+  <td>result/new_heuristic_2011_1107_figure.xlsx</td>
+  <td>7-11</td>
+  <td>J,V</td>
+  <td>enron_infoloss.r</td>
+  <td>enron_infoloss.pdf</td>
+</tr>
+</table>
+<hr>
+<h2><a name="run step"></a>Run Steps</h2>
+
+<ul>
+  <li>enron data
+    <ul>
+      <li>Detailed steps will come later, <font color="red">TODO</font></li>
+    </ul>
+  </li>
+  <li>arXiv data
+    <ul>
+      <li>Detailed steps will come later, <font color="red">TODO</font></li>
+    </ul>
+  </li>
+  <li>synthetic data
+    <ul>
+      <li>Detailed steps will come later, <font color="red">TODO</font></li>
+    </ul>
+  </li>
+  <li>livejournal data
+    <ul>
+      <li>Detailed steps will come later, <font color="red">TODO</font></li>
+    </ul>
+  </li>
+  <li>DBLP data
+    <ul>
+    <li>Data are generated from keywordsearch/src/networkanony/generateEdge.java 
+	<pre>java -cp keywordsearch.jar networkanony.generateEdge</pre>
+     </li>
+     <li>Add fake labels from networdanony/preprocess/generateFakeLabel/src/FakeLabel.java
+	<pre>java -cp livej.jar FakeLabel "graph file" K leaf_num</pre>
+     </li>
+     <li>Move output file (data/DBLP/s2_dpinputFile_o_2lab.txt) to networdanony/DBLP
+	<pre>g++ src/heuristic.cpp src/mapping.cpp -o heu2</pre>
+	<pre>./heu2 graphfile K method</pre>
+    </li>
+    <li>Move output file (data/DBLP/s3_superGraph_o_K2_2lab.txt) to networdanony/DBLP
+	<pre>make</pre>
+	<pre>./optimal K Lable_num Folder(which has s3_superGraph_o_K2_2lab.txt) prune123+loose(prune method) >>logDBLP.txt(log file)</pre>
+    </li>
+    </ul>
+</ul>
+
+<hr>
+<h2><a name="file format"></a>File format</h2>
+<ul>
+  <li><font color="purple">s1_DomainHierarchyGraph2lab.txt</font></br>
+  This is a file has the information of enumeration hierarchy tree. </br>
+  Each line has two numbers: tree_node_parent (int), tree_node_child (int)
+  <li><font color="purple">s2_dpInputFile_o_<i>i</i>lab.txt</font></br>
+  Each line has 2+i numbers: <br/>
+  graph_node_from (int), graph_node_to(int), the_first_label (int),the_second_label(int), ..., the_<i>i</i>th_label<br/>
+  E.g., Given a file "s2_dpInputFile_o_2lab.txt", each line has 4
+  numbers. These numbers are:  <br/>
+  graph_node_from (int), graph_node_to(int), the_first_label (int),  the_second_label(int)</li>
+  <li><font color="purple">DBLPNoLabel<i>i</i>Lab.txt_k=<k>k<k>_output_M2.txt</font></br>
+  This file has similar format of s2_dpInputFile_o_<i>i</i>lab.txt, but this file has three more lines at the beginning:<br/>
+  node_num (int): the total number of nodes <br/>
+  edge_num (int): the total number of edges <br/>
+  label_num (int): the label number
+  graph_node_from (int), graph_node_to(int), the_first_label (int),the_second_label(int), ..., the_<i>i</i>th_label<br/>
+  E.g., Given a file "s2_dpInputFile_o_2lab.txt", each line has 4
+  numbers. These numbers are:  <br/>
+  graph_node_from (int), graph_node_to(int), the_first_label (int),  the_second_label(int)
+  <li><font color="purple">s3_superGraph_o_K<k>k</k>_<i>i</i>lab.txt</font>
+  <li>Each line has 2+i numbers: <br/>
+  graph_node_from (int), graph_node_to(int), the_first_label (int),the_second_label(int), ..., the_<i>i</i>th_label<br/>
+  E.g., Given a file "s3_superGraph_o_K2_2lab.txt", each line has 4
+  numbers. These numbers are:  <br/>
+  graph_node_from (int), graph_node_to(int), the_first_label (int),  the_second_label(int)</li>
+  The difference from this one and s2 is like this file have edges with
+  label"-100,-100" as new added edges).</li>
+  <!--<li>The differences between input files for dp-heuristic/dp/group-heuristic</li>-->
+</ul>
+
+<hr>
+<h2><a name="problems"></a>Problems During Implement</h2>
+<ul>
+  <li>README.txt still has something unclear, like some information for enron only, should make that clear.</li>
+  <li>The output of edge anonymization part, the ouput time should use total time, not the heuristic one time.</li>
+</ul>
+
+<hr>
+<h2><a name="problems to fix"></a>Problems still need to fix</h2>
+<ul>
+  <li>Finish Re-Organizing all the folders, put all the data files in one folder, all the codes in one folder with differnet name.</li>
+  <li>Re-name the functions, make all the name of runable files reasonable.</li>
+  <li>Re-write the command sh files.</li>
+  <li>For the Group-Degree-anonymization, original there are two method, but now there is only one, and the other one does not work well, check that(basicly check on differnet OS system).</li>
+  <li>Double check the meaning of heuristic one time in the edge anonymization part.</li>
+  <li>There is a segmatation fault in the edge anonymization part. The function name is myGraph::writeTo </li>
+  <li>When check the figure 12, for label number from 2 to 4, the nodes number of enumeration tree is not clear. </li>
+  <li>Change generateFakeLabel and seperate all functions(move live journal part).</li>
+  <li>DP result and Group result are different.</li>
+</ul>

@@ -1,0 +1,3 @@
+loop:0	num:0	k:16	while:31
+#Node_Number	Original_Edge_Number	New_Edge_Number	EdgeAdded	Time
+500	522	626	104	55.793

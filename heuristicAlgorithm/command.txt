@@ -1,0 +1,3 @@
+g++ src/heuristic.cpp src/mapping.cpp -o heu2
+
+./heu2 ../input/output_K4_2lab.txt ../input/queries.txt ../input/s3_domainHierarchyGraph_Num_o_2lab.txt    
